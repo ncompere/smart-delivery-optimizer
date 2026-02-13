@@ -1,0 +1,26 @@
+[project]
+name = "smart-delivery-optimizer"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Nicolas Compère",email = "75181320+ncompere@users.noreply.github.com"}
+]
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi (>=0.129.0,<0.130.0)",
+    "uvicorn (>=0.40.0,<0.41.0)",
+    "sqlalchemy (>=2.0.46,<3.0.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)",
+    "ortools (>=9.15.6755,<10.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "black (>=26.1.0,<27.0.0)"
+]
