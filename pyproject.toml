@@ -11,7 +11,8 @@ dependencies = [
     "uvicorn (>=0.40.0,<0.41.0)",
     "sqlalchemy (>=2.0.46,<3.0.0)",
     "psycopg2-binary (>=2.9.11,<3.0.0)",
-    "ortools (>=9.15.6755,<10.0.0)"
+    "ortools (>=9.15.6755,<10.0.0)",
+    "httpx (>=0.28.1,<0.29.0)"
 ]
 
 [tool.poetry]
