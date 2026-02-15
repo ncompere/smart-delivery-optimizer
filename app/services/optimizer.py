@@ -5,6 +5,8 @@ from app.models.delivery import (
     AssignedDelivery
 )
 from fastapi import HTTPException
+from app.core.database import SessionLocal
+from app.models.optimization_record import OptimizationRecord
 
 
 def optimize_deliveries(request: OptimizationRequest) -> OptimizationResponse:
@@ -62,6 +64,17 @@ def optimize_deliveries(request: OptimizationRequest) -> OptimizationResponse:
                     )
                 )
                 total_distance += delivery.distance_km
+
+    db = SessionLocal()
+
+    record = OptimizationRecord(
+        total_distance=total_distance,
+        assignments=[a.dict() for a in assignments]
+    )
+    
+    db.add(record)
+    db.commit()
+    db.close()
 
     return OptimizationResponse(
         total_distance=total_distance,
