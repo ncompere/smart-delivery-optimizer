@@ -1,8 +1,8 @@
 # Smart Delivery Optimizer
 
-API FastAPI pour optimiser l’affectation de livraisons à des véhicules avec OR-Tools.
+FastAPI API for optimizing the assignment of deliveries to vehicles using OR-Tools.
 
-## Prérequis
+## Prerequisites
 
 - Python 3.11
 - Poetry
@@ -13,18 +13,18 @@ API FastAPI pour optimiser l’affectation de livraisons à des véhicules avec 
 poetry install
 ```
 
-## Lancer l’API
+## Running the API
 
 ```bash
 poetry run uvicorn app.main:app --reload
 ```
 
-Endpoints principaux :
+Main endpoints:
 
 - `GET /` : healthcheck
-- `POST /optimize` : calcule une affectation de livraisons
+- `POST /optimize` : computes a delivery assignment
 
-## Exécuter les tests
+## Running the tests
 
 ```bash
 poetry run pytest -q
@@ -32,27 +32,27 @@ poetry run pytest -q
 
 ## Configuration
 
-La variable d’environnement suivante est supportée :
+The following environment variable is supported:
 
 - `DATABASE_URL`
 
-Comportement par défaut :
+Default behavior:
 
-- si `DATABASE_URL` n’est pas défini, l’application utilise SQLite local (`sqlite:///./delivery_optimizer.db`)
-- pour PostgreSQL, définir par exemple :
+- if `DATABASE_URL` is not set, the application uses a local SQLite database (`sqlite:///./delivery_optimizer.db`)
+- for PostgreSQL, set for example:
 
 ```bash
 export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/delivery_optimizer"
 ```
 
-## Structure du projet
+## Project structure
 
 ```text
 app/
-    main.py                 # Entrée FastAPI
-    core/database.py        # Configuration SQLAlchemy
-    models/                 # Schémas Pydantic + modèle SQLAlchemy
-    services/optimizer.py   # Logique d’optimisation OR-Tools
+    main.py                 # FastAPI entry point
+    core/database.py        # SQLAlchemy configuration
+    models/                 # Pydantic schemas + SQLAlchemy model
+    services/optimizer.py   # OR-Tools optimization logic
 tests/
-    test_optimize.py        # Tests API
+    test_optimize.py        # API tests
 ```
