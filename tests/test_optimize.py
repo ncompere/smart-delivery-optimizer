@@ -1,10 +1,15 @@
 from fastapi.testclient import TestClient
+import pytest
 from app.main import app
 
-client = TestClient(app)
+
+@pytest.fixture
+def client():
+    with TestClient(app) as test_client:
+        yield test_client
 
 
-def test_optimize_success():
+def test_optimize_success(client):
     payload = {
         "deliveries": [
             {"id": 1, "distance_km": 10, "priority": 3, "deadline_hour": 12},
@@ -23,7 +28,7 @@ def test_optimize_success():
     assert len(data["assignments"]) == 2
 
 
-def test_optimize_infeasible():
+def test_optimize_infeasible(client):
     payload = {
         "deliveries": [
             {"id": 1, "distance_km": 10, "priority": 3, "deadline_hour": 12},
